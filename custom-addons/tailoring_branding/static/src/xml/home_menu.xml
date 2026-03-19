@@ -3,23 +3,35 @@
 
     <t t-name="tailoring_branding.HomeMenu">
         <div class="tc_home_menu">
-            <div class="tc_home_menu__grid">
-                <t t-foreach="apps" t-as="app" t-key="app.id">
-                    <a class="tc_home_menu__app"
-                        t-att-href="getMenuItemHref(app)"
-                        t-on-click.prevent="() => this.selectApp(app)">
-                        <div class="tc_home_menu__icon-wrap">
-                            <img t-if="app.webIconData"
-                                t-att-src="app.webIconData"
-                                class="tc_home_menu__icon"
-                                t-att-alt="app.name"/>
-                            <div t-else="" class="tc_home_menu__icon-placeholder">
-                                <i class="fa fa-th-large"/>
+            <div class="tc_home_menu__container">
+                <!-- Search bar -->
+                <div class="tc_home_menu__search">
+                    <input type="text"
+                        class="tc_home_menu__search-input"
+                        placeholder="Buscar aplicaciones..."
+                        t-on-input="onSearchInput"
+                        t-ref="searchInput"/>
+                </div>
+
+                <!-- Apps grid -->
+                <div class="tc_home_menu__grid">
+                    <t t-foreach="filteredApps" t-as="app" t-key="app.id">
+                        <a class="tc_home_menu__app"
+                            t-att-href="getMenuItemHref(app)"
+                            t-on-click.prevent="() => this.selectApp(app)">
+                            <div class="tc_home_menu__icon-wrap">
+                                <img t-if="app.webIconData"
+                                    t-att-src="app.webIconData"
+                                    class="tc_home_menu__icon"
+                                    t-att-alt="app.name"/>
+                                <div t-else="" class="tc_home_menu__icon-placeholder">
+                                    <i class="fa fa-th-large"/>
+                                </div>
                             </div>
-                        </div>
-                        <span class="tc_home_menu__label" t-esc="app.name"/>
-                    </a>
-                </t>
+                            <span class="tc_home_menu__label" t-esc="app.name"/>
+                        </a>
+                    </t>
+                </div>
             </div>
         </div>
     </t>
