@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main Menu -->
+    <menuitem id="menu_tailoring_root"
+        name="Tailoring"
+        web_icon="tailoring_core,static/description/icon.png"
+        sequence="50"/>
+
+    <!-- Orders -->
+    <menuitem id="menu_tailoring_orders"
+        name="Orders"
+        parent="menu_tailoring_root"
+        sequence="10"/>
+
+    <menuitem id="menu_tailoring_order_list"
+        name="Tailoring Orders"
+        parent="menu_tailoring_orders"
+        action="action_tailoring_order"
+        sequence="10"/>
+
+    <!-- Measurements -->
+    <menuitem id="menu_tailoring_measurements"
+        name="Measurements"
+        parent="menu_tailoring_root"
+        sequence="20"/>
+
+    <menuitem id="menu_customer_measurement_list"
+        name="Customer Measurements"
+        parent="menu_tailoring_measurements"
+        action="action_customer_measurement"
+        sequence="10"/>
+
+    <!-- Configuration -->
+    <menuitem id="menu_tailoring_config"
+        name="Configuration"
+        parent="menu_tailoring_root"
+        sequence="90"/>
+
+    <menuitem id="menu_garment_type_list"
+        name="Garment Types"
+        parent="menu_tailoring_config"
+        action="action_garment_type"
+        sequence="10"/>
+
+    <menuitem id="menu_measurement_type_list"
+        name="Measurement Types"
+        parent="menu_tailoring_config"
+        action="action_measurement_type"
+        sequence="20"/>
+
+</odoo>

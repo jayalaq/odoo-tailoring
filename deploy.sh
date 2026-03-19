@@ -32,24 +32,16 @@ if ! docker compose version &> /dev/null; then
     exit 1
 fi
 
-# Crear carpeta de addons extra si no existe
-mkdir -p extra-addons
-
-echo ""
-echo -e "${YELLOW}IMPORTANTE: Antes de continuar, asegurate de:${NC}"
-echo "1. Haber copiado el codigo fuente de Odoo 19 en esta carpeta"
-echo "   (debe existir el archivo odoo-bin en este directorio)"
-echo "2. Cambiar las contrasenas en docker-compose.yml y odoo.conf"
-echo ""
+# Inicializar submodulo de Odoo si no existe
+if [ ! -f "odoo/odoo-bin" ]; then
+    echo -e "${YELLOW}Inicializando Odoo CE como submodulo...${NC}"
+    git submodule update --init --depth 1
+fi
 
 # Verificar que existe odoo-bin
-if [ ! -f "odoo-bin" ]; then
-    echo -e "${RED}ERROR: No se encontro 'odoo-bin' en el directorio actual.${NC}"
-    echo "Asegurate de que el codigo fuente de Odoo 19 este en esta carpeta."
-    echo ""
-    echo "Si descargaste Odoo de GitHub, copia todos los archivos aqui:"
-    echo "  cp -r /ruta/a/odoo/* ."
-    echo ""
+if [ ! -f "odoo/odoo-bin" ]; then
+    echo -e "${RED}ERROR: No se encontro 'odoo/odoo-bin'.${NC}"
+    echo "Ejecuta: git submodule update --init --depth 1"
     exit 1
 fi
 
@@ -84,4 +76,5 @@ echo "  Ver logs:      docker compose logs -f odoo-web"
 echo "  Reiniciar:     docker compose restart"
 echo "  Detener:       docker compose down"
 echo "  Reconstruir:   docker compose up -d --build"
+echo "  Actualizar:    git submodule update --remote odoo"
 echo "=========================================="

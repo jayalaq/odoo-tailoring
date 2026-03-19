@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_garment_type_user,tailoring.garment.type.user,model_tailoring_garment_type,base.group_user,1,1,1,0
+access_garment_type_manager,tailoring.garment.type.manager,model_tailoring_garment_type,base.group_system,1,1,1,1
+access_measurement_type_user,tailoring.measurement.type.user,model_tailoring_measurement_type,base.group_user,1,1,1,0
+access_measurement_type_manager,tailoring.measurement.type.manager,model_tailoring_measurement_type,base.group_system,1,1,1,1
+access_customer_measurement_user,tailoring.customer.measurement.user,model_tailoring_customer_measurement,base.group_user,1,1,1,0
+access_customer_measurement_manager,tailoring.customer.measurement.manager,model_tailoring_customer_measurement,base.group_system,1,1,1,1
+access_customer_measurement_line_user,tailoring.customer.measurement.line.user,model_tailoring_customer_measurement_line,base.group_user,1,1,1,0
+access_customer_measurement_line_manager,tailoring.customer.measurement.line.manager,model_tailoring_customer_measurement_line,base.group_system,1,1,1,1
+access_tailoring_order_user,tailoring.order.user,model_tailoring_order,base.group_user,1,1,1,0
+access_tailoring_order_manager,tailoring.order.manager,model_tailoring_order,base.group_system,1,1,1,1
+access_tailoring_order_line_user,tailoring.order.line.user,model_tailoring_order_line,base.group_user,1,1,1,0
+access_tailoring_order_line_manager,tailoring.order.line.manager,model_tailoring_order_line,base.group_system,1,1,1,1

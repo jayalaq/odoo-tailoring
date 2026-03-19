@@ -48,12 +48,15 @@ RUN npm install -g rtlcss
 RUN useradd -m -d /opt/odoo -s /bin/bash odoo
 
 # Crear directorios necesarios
-RUN mkdir -p /opt/odoo/extra-addons \
+RUN mkdir -p /opt/odoo/custom-addons \
     && mkdir -p /etc/odoo \
     && mkdir -p /var/lib/odoo
 
-# Copiar codigo fuente de Odoo
-COPY . /opt/odoo/odoo
+# Copiar codigo fuente de Odoo CE
+COPY ./odoo /opt/odoo/odoo
+
+# Copiar modulos personalizados
+COPY ./custom-addons /opt/odoo/custom-addons
 
 WORKDIR /opt/odoo/odoo
 
