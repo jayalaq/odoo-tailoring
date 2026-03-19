@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <!-- Override WebClient: add HomeMenu overlay -->
+    <!-- Override WebClient: add HomeMenu before ActionContainer -->
     <t t-name="tailoring_branding.WebClient" t-inherit="web.WebClient" t-inherit-mode="extension">
         <xpath expr="//ActionContainer" position="before">
             <HomeMenu t-if="homeMenuState.open" onAppSelected.bind="onHomeAppSelected"/>
-        </xpath>
-        <xpath expr="//ActionContainer" position="attributes">
-            <attribute name="t-att-class">{ 'd-none': homeMenuState.open }</attribute>
         </xpath>
     </t>
 

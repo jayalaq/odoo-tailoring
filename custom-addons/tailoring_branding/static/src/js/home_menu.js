@@ -1,8 +1,7 @@
 /** @odoo-module **/
 
-import { Component, useState } from "@odoo/owl";
+import { Component } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
-import { registry } from "@web/core/registry";
 
 export class HomeMenu extends Component {
     static template = "tailoring_branding.HomeMenu";

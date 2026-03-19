@@ -5,31 +5,27 @@ import { HomeMenu } from "./home_menu";
 import { patch } from "@web/core/utils/patch";
 import { useState } from "@odoo/owl";
 
-// Add HomeMenu to WebClient's static components
+// Register HomeMenu as a known component
 WebClient.components = {
     ...WebClient.components,
     HomeMenu,
 };
 
-// Patch the WebClient prototype to add home menu state
+// Patch the WebClient prototype to add home menu state and logic
 patch(WebClient.prototype, {
     setup() {
-        super.setup(...arguments);
+        super.setup();
         this.homeMenuState = useState({ open: false });
 
-        // Open home menu when no app is loaded
-        this.env.bus.addEventListener("WEBCLIENT:SHOW_HOME_MENU", () => {
-            this.homeMenuState.open = true;
+        // Toggle home menu from navbar button
+        this.env.bus.addEventListener("TOGGLE_HOME_MENU", () => {
+            this.homeMenuState.open = !this.homeMenuState.open;
         });
 
         // Close home menu when an app is selected
         this.env.bus.addEventListener("MENUS:APP-CHANGED", () => {
             this.homeMenuState.open = false;
         });
-    },
-
-    toggleHomeMenu() {
-        this.homeMenuState.open = !this.homeMenuState.open;
     },
 
     onHomeAppSelected() {
