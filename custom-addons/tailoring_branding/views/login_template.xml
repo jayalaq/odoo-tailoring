@@ -10,7 +10,7 @@
         <!-- Replace the "Powered by" text in login footer -->
         <xpath expr="//div[hasclass('o_footer')]" position="replace">
             <div class="o_footer text-center text-muted mt-3">
-                <small>Tailoring Consult ERP &amp;copy; 2024</small>
+                <small>Tailoring Consult ERP &amp;copy; 2025</small>
             </div>
         </xpath>
     </template>

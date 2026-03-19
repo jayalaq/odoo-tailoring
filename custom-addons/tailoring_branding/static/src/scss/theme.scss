@@ -1,0 +1,277 @@
+// Tailoring Consult ERP - Enterprise Theme Styles
+
+// ============================================
+// Color Variables
+// ============================================
+$tc-primary: #1B4965;
+$tc-primary-light: #5FA8D3;
+$tc-accent: #CAE9FF;
+$tc-success: #0D7377;
+$tc-dark: #0B2545;
+$tc-bg: #F0F2F5;
+$tc-white: #FFFFFF;
+$tc-text: #333333;
+$tc-text-muted: #6c757d;
+$tc-border: #DEE2E6;
+
+// ============================================
+// Navbar (now horizontal top bar within main content)
+// ============================================
+.o_main_navbar {
+    background-color: $tc-white !important;
+    border-bottom: 1px solid $tc-border !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    height: 46px;
+}
+
+.o_main_navbar .o_menu_brand {
+    color: $tc-dark !important;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.o_main_navbar .o_menu_entry_lvl_1 > .dropdown-toggle,
+.o_main_navbar .o_nav_entry {
+    color: $tc-text !important;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.o_main_navbar .o_nav_entry:hover,
+.o_main_navbar .o_menu_entry_lvl_1 > .dropdown-toggle:hover {
+    color: $tc-primary !important;
+    background-color: rgba($tc-primary, 0.06) !important;
+}
+
+.o_main_navbar .o_menu_systray {
+    .o_user_menu button,
+    .dropdown-toggle {
+        color: $tc-text !important;
+    }
+}
+
+// Spacer where apps menu used to be
+.tc_navbar_spacer {
+    width: 8px;
+}
+
+// ============================================
+// Typography
+// ============================================
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// ============================================
+// Buttons
+// ============================================
+.btn-primary {
+    background-color: $tc-primary !important;
+    border-color: $tc-primary !important;
+    font-weight: 500;
+    border-radius: 6px;
+
+    &:hover, &:focus {
+        background-color: darken($tc-primary, 8%) !important;
+        border-color: darken($tc-primary, 8%) !important;
+    }
+
+    &:active {
+        background-color: darken($tc-primary, 12%) !important;
+    }
+}
+
+.btn-secondary {
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.btn-outline-primary {
+    color: $tc-primary !important;
+    border-color: $tc-primary !important;
+
+    &:hover {
+        background-color: $tc-primary !important;
+        color: $tc-white !important;
+    }
+}
+
+// ============================================
+// Control Panel
+// ============================================
+.o_control_panel {
+    background: $tc-white;
+    border-bottom: 1px solid $tc-border;
+    padding: 8px 16px;
+}
+
+.o_control_panel .breadcrumb {
+    .breadcrumb-item {
+        font-size: 14px;
+        font-weight: 500;
+
+        &.active {
+            color: $tc-dark;
+            font-weight: 600;
+        }
+    }
+}
+
+// ============================================
+// Views
+// ============================================
+.o_action_manager {
+    background: $tc-bg;
+}
+
+.o_list_view {
+    .o_list_table {
+        thead th {
+            background: #F8F9FA;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: $tc-text-muted;
+            border-bottom: 2px solid $tc-border;
+        }
+
+        tbody tr:hover {
+            background-color: rgba($tc-primary, 0.03);
+        }
+    }
+}
+
+.o_form_view {
+    .o_form_sheet_bg {
+        background: $tc-bg;
+    }
+
+    .o_form_sheet {
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        border: 1px solid $tc-border;
+    }
+}
+
+// ============================================
+// Kanban
+// ============================================
+.o_kanban_view {
+    background: $tc-bg;
+
+    .o_kanban_group {
+        background: transparent;
+    }
+
+    .o_kanban_record {
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        border: 1px solid $tc-border;
+        transition: box-shadow 0.15s ease;
+
+        &:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+// ============================================
+// Statusbar
+// ============================================
+.o_statusbar_status {
+    .o_arrow_button.o_arrow_button_current {
+        background-color: $tc-primary !important;
+        color: $tc-white !important;
+    }
+}
+
+// ============================================
+// Chatter
+// ============================================
+.o_chatter {
+    .o_chatter_topbar {
+        border-bottom: 1px solid $tc-border;
+    }
+}
+
+// ============================================
+// Search Panel
+// ============================================
+.o_search_panel {
+    background: $tc-white;
+    border-right: 1px solid $tc-border;
+}
+
+// ============================================
+// Calendar
+// ============================================
+.o_calendar_view {
+    .fc-event {
+        border-radius: 4px;
+    }
+}
+
+// ============================================
+// Selection highlight
+// ============================================
+::selection {
+    background: $tc-accent;
+    color: $tc-dark;
+}
+
+// ============================================
+// Hide Odoo branding
+// ============================================
+.o_brand_promotion,
+.o_footer_powered_by,
+a[href*="odoo.com"]:not(.o_menuitem) {
+    display: none !important;
+}
+
+// ============================================
+// Login Page
+// ============================================
+.o_login_auth {
+    border-top: 3px solid $tc-primary;
+}
+
+// ============================================
+// Scrollbar styling
+// ============================================
+.o_action_manager {
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+    }
+}
+
+// ============================================
+// App icons in home page
+// ============================================
+.o_app .o_caption {
+    color: $tc-primary;
+    font-weight: 500;
+}
+
+// ============================================
+// Badge colors
+// ============================================
+.badge.text-bg-primary,
+.badge.bg-primary {
+    background-color: $tc-primary !important;
+}

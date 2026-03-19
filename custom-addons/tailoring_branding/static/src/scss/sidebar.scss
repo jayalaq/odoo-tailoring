@@ -1,0 +1,181 @@
+// Tailoring Consult ERP - Sidebar Styles
+
+$tc-sidebar-bg: #0B2545;
+$tc-sidebar-text: rgba(255, 255, 255, 0.75);
+$tc-sidebar-text-hover: #FFFFFF;
+$tc-sidebar-active-bg: rgba(95, 168, 211, 0.2);
+$tc-sidebar-active-border: #5FA8D3;
+$tc-sidebar-width-expanded: 220px;
+$tc-sidebar-width-collapsed: 62px;
+$tc-sidebar-transition: 0.2s ease;
+
+// Main layout
+.tc_layout {
+    height: 100vh;
+    overflow: hidden;
+}
+
+// Sidebar
+.tc_sidebar {
+    background: $tc-sidebar-bg;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    transition: width $tc-sidebar-transition;
+    z-index: 1040;
+    flex-shrink: 0;
+
+    &--expanded {
+        width: $tc-sidebar-width-expanded;
+    }
+
+    &--collapsed {
+        width: $tc-sidebar-width-collapsed;
+    }
+
+    // Brand section
+    &__brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        min-height: 58px;
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none !important;
+        color: $tc-sidebar-text-hover !important;
+        gap: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &__logo-icon {
+        font-size: 22px;
+        color: #5FA8D3;
+        flex-shrink: 0;
+        width: 28px;
+        text-align: center;
+    }
+
+    &__logo-text {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: $tc-sidebar-text-hover;
+    }
+
+    &__toggle {
+        color: $tc-sidebar-text !important;
+        padding: 4px 8px;
+        font-size: 14px;
+        background: transparent !important;
+        flex-shrink: 0;
+
+        &:hover {
+            color: $tc-sidebar-text-hover !important;
+        }
+    }
+
+    // Navigation
+    &__nav {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 8px 0;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+    }
+
+    // Nav items
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        color: $tc-sidebar-text !important;
+        text-decoration: none !important;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        border-left: 3px solid transparent;
+        gap: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &:hover {
+            color: $tc-sidebar-text-hover !important;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        &--active {
+            color: $tc-sidebar-text-hover !important;
+            background: $tc-sidebar-active-bg;
+            border-left-color: $tc-sidebar-active-border;
+        }
+
+        &--footer {
+            border-left: 3px solid transparent;
+        }
+    }
+
+    &__item-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 16px;
+    }
+
+    &__app-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        object-fit: cover;
+    }
+
+    &__item-label {
+        font-size: 13px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    // Footer
+    &__footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 8px 0;
+    }
+}
+
+// Main content area
+.tc_main {
+    background: #F0F2F5;
+    min-width: 0;
+}
+
+// Responsive - hide sidebar on small screens
+@media (max-width: 767.98px) {
+    .tc_sidebar {
+        display: none !important;
+    }
+
+    .tc_layout {
+        flex-direction: column;
+    }
+}

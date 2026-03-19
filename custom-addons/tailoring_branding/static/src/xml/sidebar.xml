@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="tailoring_branding.AppSidebar">
+        <aside class="tc_sidebar d-print-none"
+            t-att-class="{
+                'tc_sidebar--collapsed': state.collapsed and !state.hovering,
+                'tc_sidebar--expanded': !state.collapsed or state.hovering,
+            }"
+            t-on-mouseenter="onMouseEnter"
+            t-on-mouseleave="onMouseLeave">
+
+            <!-- Logo / Brand -->
+            <div class="tc_sidebar__brand">
+                <a href="/odoo" class="tc_sidebar__logo">
+                    <i class="fa fa-scissors tc_sidebar__logo-icon"/>
+                    <span t-if="isExpanded" class="tc_sidebar__logo-text">TC ERP</span>
+                </a>
+                <button class="tc_sidebar__toggle btn border-0" t-on-click="toggleCollapse" title="Toggle sidebar">
+                    <i t-att-class="state.collapsed ? 'fa fa-angle-double-right' : 'fa fa-angle-double-left'"/>
+                </button>
+            </div>
+
+            <!-- App Navigation -->
+            <nav class="tc_sidebar__nav">
+                <t t-foreach="apps" t-as="app" t-key="app.id">
+                    <a class="tc_sidebar__item"
+                        t-att-class="{ 'tc_sidebar__item--active': currentApp and currentApp.id === app.id }"
+                        t-att-href="getMenuItemHref(app)"
+                        t-att-title="app.name"
+                        t-on-click.prevent="() => this.selectApp(app)">
+                        <div class="tc_sidebar__item-icon">
+                            <img t-if="app.webIconData"
+                                t-att-src="app.webIconData"
+                                class="tc_sidebar__app-icon"
+                                t-att-alt="app.name"/>
+                            <i t-else="" class="fa fa-th-large"/>
+                        </div>
+                        <span t-if="isExpanded" class="tc_sidebar__item-label" t-esc="app.name"/>
+                    </a>
+                </t>
+            </nav>
+
+            <!-- Bottom section -->
+            <div class="tc_sidebar__footer">
+                <div class="tc_sidebar__item tc_sidebar__item--footer">
+                    <div class="tc_sidebar__item-icon">
+                        <i class="fa fa-cog"/>
+                    </div>
+                    <span t-if="isExpanded" class="tc_sidebar__item-label">Settings</span>
+                </div>
+            </div>
+        </aside>
+    </t>
+
+</templates>

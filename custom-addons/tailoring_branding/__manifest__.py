@@ -1,26 +1,35 @@
 {
     'name': 'Tailoring Consult ERP - Branding',
-    'version': '19.0.1.0.0',
+    'version': '19.0.2.0.0',
     'category': 'Tools',
-    'summary': 'Custom branding for Tailoring Consult ERP',
+    'summary': 'Enterprise-style theme with sidebar navigation for Tailoring Consult ERP',
     'description': """
         Tailoring Consult ERP Branding
         ==============================
-        - Replaces default branding with Tailoring Consult ERP
-        - Custom colors and styling
+        - Enterprise-style sidebar navigation
+        - Modern color scheme and typography
+        - Custom branding throughout the UI
         - Removes third-party references
     """,
     'author': 'Tailoring Consult',
     'website': '',
     'license': 'LGPL-3',
-    'depends': ['web', 'tailoring_core'],
+    'depends': ['web'],
     'data': [
         'views/webclient_templates.xml',
         'views/login_template.xml',
     ],
     'assets': {
         'web.assets_backend': [
-            'tailoring_branding/static/src/css/branding.css',
+            # SCSS theme
+            'tailoring_branding/static/src/scss/sidebar.scss',
+            'tailoring_branding/static/src/scss/theme.scss',
+            # JS components
+            'tailoring_branding/static/src/js/sidebar.js',
+            'tailoring_branding/static/src/js/webclient.js',
+            # XML templates
+            'tailoring_branding/static/src/xml/sidebar.xml',
+            'tailoring_branding/static/src/xml/webclient.xml',
             'tailoring_branding/static/src/xml/systray.xml',
         ],
     },
