@@ -60,9 +60,6 @@ COPY ./custom-addons /opt/odoo/custom-addons
 
 WORKDIR /opt/odoo/odoo
 
-# Debug: verify requirements.txt was copied
-RUN ls -la /opt/odoo/odoo/requirements.txt || echo "FILE NOT FOUND"
-
 # Instalar dependencias Python de Odoo
 RUN pip install --no-cache-dir -r requirements.txt \
     && pip install --no-cache-dir psycopg2-binary
