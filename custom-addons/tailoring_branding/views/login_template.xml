@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Customize the login page -->
+    <!-- Add branding to the login page -->
     <template id="brand_login_page" inherit_id="web.login" name="Tailoring Consult ERP Login">
-        <!-- Replace page title -->
-        <xpath expr="//title" position="replace">
-            <title>Tailoring Consult ERP</title>
-        </xpath>
-        <!-- Replace the "Powered by" text in login footer -->
-        <xpath expr="//div[hasclass('o_footer')]" position="replace">
-            <div class="o_footer text-center text-muted mt-3">
-                <small>Tailoring Consult ERP &amp;copy; 2025</small>
+        <xpath expr="//div[hasclass('oe_structure')]" position="before">
+            <div class="text-center text-muted mb-3">
+                <small>Tailoring Consult ERP</small>
             </div>
         </xpath>
     </template>

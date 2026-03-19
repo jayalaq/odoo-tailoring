@@ -8,11 +8,4 @@
         </xpath>
     </template>
 
-    <!-- Remove "Powered by Odoo" in the backend -->
-    <template id="brand_footer" inherit_id="web.webclient_bootstrap" name="Tailoring Consult ERP Footer">
-        <xpath expr="//body" position="attributes">
-            <attribute name="data-brand-name">Tailoring Consult ERP</attribute>
-        </xpath>
-    </template>
-
 </odoo>
