@@ -3,11 +3,10 @@
 // ============================================
 // Color Variables
 // ============================================
-$tc-primary: #1B4965;
-$tc-primary-light: #5FA8D3;
-$tc-accent: #CAE9FF;
-$tc-success: #0D7377;
-$tc-dark: #0B2545;
+$tc-primary: #714B67;
+$tc-primary-light: #9b7e92;
+$tc-accent: #e8e0ef;
+$tc-dark: #2c1b28;
 $tc-bg: #F0F2F5;
 $tc-white: #FFFFFF;
 $tc-text: #333333;
@@ -15,46 +14,62 @@ $tc-text-muted: #6c757d;
 $tc-border: #DEE2E6;
 
 // ============================================
-// Navbar (white horizontal bar on top of content area)
+// Navbar - Enterprise style (muted purple/gray top bar)
 // ============================================
 .o_main_navbar {
-    background-color: $tc-white !important;
-    border-bottom: 1px solid $tc-border !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    background-color: $tc-primary !important;
+    border-bottom: none !important;
+    box-shadow: none;
 }
 
 .o_main_navbar .o_menu_brand {
-    color: $tc-dark !important;
+    color: #fff !important;
     font-weight: 600;
     font-size: 14px;
 }
 
 .o_main_navbar .o_menu_entry_lvl_1 > .dropdown-toggle,
 .o_main_navbar .o_nav_entry {
-    color: $tc-text !important;
+    color: rgba(255, 255, 255, 0.85) !important;
     font-size: 13px;
     font-weight: 500;
 }
 
 .o_main_navbar .o_nav_entry:hover,
 .o_main_navbar .o_menu_entry_lvl_1 > .dropdown-toggle:hover {
-    color: $tc-primary !important;
-    background-color: rgba($tc-primary, 0.06) !important;
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .o_main_navbar .o_menu_systray {
-    > * {
-        color: $tc-text;
+    button, .dropdown-toggle, a {
+        color: rgba(255, 255, 255, 0.85) !important;
     }
 
-    button, .dropdown-toggle {
-        color: $tc-text !important;
+    button:hover, .dropdown-toggle:hover {
+        color: #fff !important;
     }
 }
 
-// Fix: the navbar badge should still be visible
 .o_main_navbar .badge {
     color: #fff !important;
+}
+
+// Home button in navbar
+.tc_home_btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 6px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.12s ease;
+
+    &:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+    }
 }
 
 // ============================================
@@ -69,10 +84,6 @@ $tc-border: #DEE2E6;
         background-color: darken($tc-primary, 8%) !important;
         border-color: darken($tc-primary, 8%) !important;
     }
-
-    &:active {
-        background-color: darken($tc-primary, 12%) !important;
-    }
 }
 
 .btn-outline-primary {
@@ -86,7 +97,7 @@ $tc-border: #DEE2E6;
 }
 
 // ============================================
-// Control Panel / Breadcrumbs
+// Control Panel
 // ============================================
 .o_control_panel {
     background: $tc-white;
@@ -94,39 +105,33 @@ $tc-border: #DEE2E6;
 }
 
 .o_control_panel .breadcrumb {
-    .breadcrumb-item {
-        font-size: 14px;
-
-        &.active {
-            color: $tc-dark;
-            font-weight: 600;
-        }
+    .breadcrumb-item.active {
+        color: $tc-dark;
+        font-weight: 600;
     }
 }
 
 // ============================================
-// Views - General
+// Views
 // ============================================
 .o_action_manager {
     background: $tc-bg;
 }
 
 // List View
-.o_list_view {
-    .o_list_table {
-        thead th {
-            background: #F8F9FA;
-            font-weight: 600;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            color: $tc-text-muted;
-            border-bottom: 2px solid $tc-border;
-        }
+.o_list_view .o_list_table {
+    thead th {
+        background: #F8F9FA;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        color: $tc-text-muted;
+        border-bottom: 2px solid $tc-border;
+    }
 
-        tbody tr:hover {
-            background-color: rgba($tc-primary, 0.03);
-        }
+    tbody tr:hover {
+        background-color: rgba($tc-primary, 0.03);
     }
 }
 
@@ -151,7 +156,6 @@ $tc-border: #DEE2E6;
         border-radius: 8px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
         border: 1px solid $tc-border;
-        transition: box-shadow 0.15s ease;
 
         &:hover {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -162,19 +166,9 @@ $tc-border: #DEE2E6;
 // ============================================
 // Statusbar
 // ============================================
-.o_statusbar_status {
-    .o_arrow_button.o_arrow_button_current {
-        background-color: $tc-primary !important;
-        color: $tc-white !important;
-    }
-}
-
-// ============================================
-// Selection highlight
-// ============================================
-::selection {
-    background: $tc-accent;
-    color: $tc-dark;
+.o_statusbar_status .o_arrow_button.o_arrow_button_current {
+    background-color: $tc-primary !important;
+    color: $tc-white !important;
 }
 
 // ============================================
@@ -186,24 +180,28 @@ $tc-border: #DEE2E6;
 }
 
 // ============================================
-// App icons in home page
+// Selection highlight
+// ============================================
+::selection {
+    background: $tc-accent;
+    color: $tc-dark;
+}
+
+// ============================================
+// App icons in native Odoo views
 // ============================================
 .o_app .o_caption {
     color: $tc-primary;
     font-weight: 500;
 }
 
-// ============================================
-// Badge colors
-// ============================================
+// Badges
 .badge.text-bg-primary,
 .badge.bg-primary {
     background-color: $tc-primary !important;
 }
 
-// ============================================
 // Links
-// ============================================
-a {
+a:not(.btn):not(.dropdown-item):not(.nav-link):not(.o_menu_brand) {
     color: $tc-primary;
 }

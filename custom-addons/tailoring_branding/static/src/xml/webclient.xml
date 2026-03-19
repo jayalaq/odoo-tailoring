@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <!-- Override WebClient: wrap in flex row layout with sidebar -->
+    <!-- Override WebClient: add HomeMenu overlay -->
     <t t-name="tailoring_branding.WebClient" t-inherit="web.WebClient" t-inherit-mode="extension">
-        <xpath expr="//t[@t-if='!state.fullscreen']" position="before">
-            <AppSidebar t-if="!state.fullscreen"/>
+        <xpath expr="//ActionContainer" position="before">
+            <HomeMenu t-if="homeMenuState.open" onAppSelected.bind="onHomeAppSelected"/>
+        </xpath>
+        <xpath expr="//ActionContainer" position="attributes">
+            <attribute name="t-att-class">{ 'd-none': homeMenuState.open }</attribute>
         </xpath>
     </t>
 
-    <!-- Hide the apps menu dropdown from navbar since apps are now in sidebar -->
+    <!-- Override NavBar: replace apps dropdown with home menu toggle button -->
     <t t-name="tailoring_branding.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
         <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="replace">
-            <!-- Apps menu moved to sidebar -->
+            <div class="o_navbar_apps_menu">
+                <button class="tc_home_btn" data-hotkey="h" title="Home Menu" t-on-click="toggleHomeMenu">
+                    <i class="oi oi-apps"/>
+                </button>
+            </div>
         </xpath>
     </t>
 

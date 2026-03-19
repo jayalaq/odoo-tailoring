@@ -1,15 +1,15 @@
 {
     'name': 'Tailoring Consult ERP - Branding',
-    'version': '19.0.2.0.0',
+    'version': '19.0.3.0.0',
     'category': 'Tools',
-    'summary': 'Enterprise-style theme with sidebar navigation for Tailoring Consult ERP',
+    'summary': 'Enterprise-style home menu and theme for Tailoring Consult ERP',
     'description': """
         Tailoring Consult ERP Branding
         ==============================
-        - Enterprise-style sidebar navigation with app icons
-        - Modern color scheme and typography
-        - White navbar with dark sidebar
-        - Custom branding throughout the UI
+        - Enterprise-style full screen home menu with app grid
+        - Gradient background like Odoo Enterprise
+        - Custom brand colors and navbar
+        - Removes third-party references
     """,
     'author': 'Tailoring Consult',
     'website': '',
@@ -21,14 +21,15 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # SCSS (load sidebar first since it changes layout)
-            'tailoring_branding/static/src/scss/sidebar.scss',
+            # SCSS
+            'tailoring_branding/static/src/scss/home_menu.scss',
             'tailoring_branding/static/src/scss/theme.scss',
-            # JS components
-            'tailoring_branding/static/src/js/sidebar.js',
+            # JS
+            'tailoring_branding/static/src/js/home_menu.js',
             'tailoring_branding/static/src/js/webclient.js',
-            # OWL XML templates
-            'tailoring_branding/static/src/xml/sidebar.xml',
+            'tailoring_branding/static/src/js/navbar.js',
+            # OWL XML
+            'tailoring_branding/static/src/xml/home_menu.xml',
             'tailoring_branding/static/src/xml/webclient.xml',
             'tailoring_branding/static/src/xml/systray.xml',
         ],
