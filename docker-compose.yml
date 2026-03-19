@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  odoo-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: odoo19
+    depends_on:
+      odoo-db:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - ./extra-addons:/opt/odoo/extra-addons
+    environment:
+      - HOST=odoo-db
+      - PORT=5432
+      - USER=odoo
+      - PASSWORD=odoo_t41l0r1ng_2024
+    restart: always
+    networks:
+      - odoo-network
+
+  odoo-db:
+    image: postgres:16
+    container_name: odoo19-db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo_t41l0r1ng_2024
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+    ports:
+      - "5433:5432"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - odoo-network
+
+volumes:
+  odoo-data:
+  db-data:
+
+networks:
+  odoo-network:
+    driver: bridge

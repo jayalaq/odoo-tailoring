@@ -1,0 +1,17 @@
+.git
+.github
+.gitignore
+*.pyc
+__pycache__
+*.pyo
+*.egg-info
+.tox
+.pytest_cache
+node_modules
+.vscode
+.idea
+*.md
+LICENSE
+doc/
+debian/
+extra-addons/
