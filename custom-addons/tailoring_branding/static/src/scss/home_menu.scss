@@ -15,16 +15,25 @@
 // .o_menu_brand, .o_menu_sections, .o_navbar_breadcrumbs
 // We target via the parent .o_web_client when home menu exists
 .o_web_client:has(.tc_home_menu) {
+    // Hide ALL navbar content except systray and home menu toggle
     .o_menu_brand,
     .o_menu_sections,
     .o_navbar_breadcrumbs {
         display: none !important;
     }
 
-    // Make navbar transparent/blend with home menu background
+    // Make navbar completely transparent - no purple bar
     .o_main_navbar {
-        background-color: rgba(113, 75, 103, 0.85) !important;
-        backdrop-filter: blur(8px);
+        background-color: transparent !important;
+        background-image: none !important;
+        background: transparent !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
     }
 }
 
@@ -37,7 +46,8 @@
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 60px 20px 80px;
+    // Extra top padding because navbar is now transparent/absolute
+    padding: 80px 20px 80px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
