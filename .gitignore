@@ -29,5 +29,9 @@ filestore/
 # Docker
 docker-compose.override.yml
 
+# Deploy secrets
+deploy/.env
+deploy/nginx/certs/
+
 # Logs
 *.log

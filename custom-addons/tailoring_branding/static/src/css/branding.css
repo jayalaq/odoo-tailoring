@@ -1,0 +1,78 @@
+/* Tailoring Consult ERP - Custom Branding Styles */
+
+/* Primary brand colors */
+:root {
+    --tc-primary: #1B4965;
+    --tc-primary-light: #5FA8D3;
+    --tc-accent: #CAE9FF;
+    --tc-success: #62B6CB;
+    --tc-dark: #0B2545;
+}
+
+/* Navbar/top bar color */
+.o_main_navbar {
+    background-color: var(--tc-primary) !important;
+    border-bottom: 2px solid var(--tc-primary-light);
+}
+
+.o_main_navbar .o_menu_brand {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.o_main_navbar .o_menu_entry_lvl_1 > .dropdown-toggle,
+.o_main_navbar .o_nav_entry {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.o_main_navbar .o_nav_entry:hover,
+.o_main_navbar .o_menu_entry_lvl_1 > .dropdown-toggle:hover {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Hide "Odoo" text in the navbar */
+.o_main_navbar .o_menu_brand_icon + span {
+    font-size: 0;
+}
+
+/* Primary buttons */
+.btn-primary {
+    background-color: var(--tc-primary) !important;
+    border-color: var(--tc-primary) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--tc-dark) !important;
+    border-color: var(--tc-dark) !important;
+}
+
+/* Login page customization */
+.o_login_auth {
+    border-top: 3px solid var(--tc-primary);
+}
+
+/* Statusbar active state */
+.o_statusbar_status .o_arrow_button.o_arrow_button_current {
+    background-color: var(--tc-primary) !important;
+    color: #fff !important;
+}
+
+/* Hide Odoo branding elements */
+.o_brand_promotion,
+.o_footer_powered_by,
+a[href*="odoo.com"]:not(.o_menuitem) {
+    display: none !important;
+}
+
+/* App icon accent */
+.o_app .o_caption {
+    color: var(--tc-primary);
+}
+
+/* Selection highlight */
+::selection {
+    background: var(--tc-accent);
+    color: var(--tc-dark);
+}

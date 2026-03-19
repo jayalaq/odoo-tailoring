@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Report Action -->
+    <record id="action_report_tailoring_order" model="ir.actions.report">
+        <field name="name">Tailoring Order</field>
+        <field name="model">tailoring.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tailoring_core.report_tailoring_order_document</field>
+        <field name="report_file">tailoring_core.report_tailoring_order_document</field>
+        <field name="binding_model_id" ref="model_tailoring_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Report Template -->
+    <template id="report_tailoring_order_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- Header -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h2>
+                                    <strong>Tailoring Order</strong>
+                                </h2>
+                                <h3>
+                                    <span t-field="doc.name"/>
+                                </h3>
+                            </div>
+                            <div class="col-6 text-end">
+                                <div>
+                                    <strong>Status: </strong>
+                                    <span t-field="doc.state" class="badge rounded-pill"/>
+                                </div>
+                                <div>
+                                    <strong>Order Date: </strong>
+                                    <span t-field="doc.date_order"/>
+                                </div>
+                                <div t-if="doc.date_deadline">
+                                    <strong>Delivery Date: </strong>
+                                    <span t-field="doc.date_deadline"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Customer Info -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <h5>Customer Information</h5>
+                                <div>
+                                    <strong t-field="doc.partner_id.name"/>
+                                </div>
+                                <div t-if="doc.partner_id.street">
+                                    <span t-field="doc.partner_id.street"/>
+                                </div>
+                                <div t-if="doc.partner_id.city">
+                                    <span t-field="doc.partner_id.city"/>
+                                    <span t-if="doc.partner_id.state_id">, <span t-field="doc.partner_id.state_id.name"/></span>
+                                </div>
+                                <div t-if="doc.partner_id.phone">
+                                    Tel: <span t-field="doc.partner_id.phone"/>
+                                </div>
+                                <div t-if="doc.partner_id.email">
+                                    Email: <span t-field="doc.partner_id.email"/>
+                                </div>
+                            </div>
+                            <div class="col-6" t-if="doc.measurement_id">
+                                <h5>Customer Measurements</h5>
+                                <small class="text-muted">
+                                    Date: <span t-field="doc.measurement_id.date"/>
+                                </small>
+                                <table class="table table-sm table-bordered mt-1">
+                                    <thead>
+                                        <tr>
+                                            <th>Measurement</th>
+                                            <th class="text-end">Value</th>
+                                            <th>Unit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="doc.measurement_id.line_ids" t-as="ml">
+                                            <td><span t-field="ml.measurement_type_id.name"/></td>
+                                            <td class="text-end"><span t-field="ml.value"/></td>
+                                            <td><span t-field="ml.unit"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Order Lines -->
+                        <h5>Order Details</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Garment</th>
+                                    <th>Fabric / Material</th>
+                                    <th class="text-center">Qty</th>
+                                    <th class="text-end">Unit Price</th>
+                                    <th class="text-end">Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.line_ids" t-as="line">
+                                    <td><span t-field="line.garment_type_id.name"/></td>
+                                    <td><span t-field="line.fabric_description"/></td>
+                                    <td class="text-center"><span t-field="line.quantity"/></td>
+                                    <td class="text-end"><span t-field="line.unit_price" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                    <td class="text-end"><span t-field="line.subtotal" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="text-end"><strong>Total</strong></td>
+                                    <td class="text-end"><strong t-field="doc.total_amount" t-options='{"widget": "monetary", "display_currency": doc.company_id.currency_id}'/></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <!-- Special Instructions -->
+                        <div t-foreach="doc.line_ids" t-as="line">
+                            <div t-if="line.notes" class="mt-2">
+                                <strong>Instructions for <span t-field="line.garment_type_id.name"/>:</strong>
+                                <span t-field="line.notes"/>
+                            </div>
+                        </div>
+
+                        <!-- Customer Notes -->
+                        <div t-if="doc.customer_notes" class="mt-4">
+                            <h5>Customer Notes</h5>
+                            <p t-field="doc.customer_notes"/>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="mt-5 pt-3 border-top text-center text-muted">
+                            <small>Tailoring Consult ERP - Thank you for your business</small>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

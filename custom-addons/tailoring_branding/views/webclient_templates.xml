@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Change browser tab title -->
+    <template id="brand_title" inherit_id="web.layout" name="Tailoring Consult ERP Title">
+        <xpath expr="//title" position="replace">
+            <title>Tailoring Consult ERP</title>
+        </xpath>
+    </template>
+
+    <!-- Remove "Powered by Odoo" in the backend -->
+    <template id="brand_footer" inherit_id="web.webclient_bootstrap" name="Tailoring Consult ERP Footer">
+        <xpath expr="//body" position="attributes">
+            <attribute name="data-brand-name">Tailoring Consult ERP</attribute>
+        </xpath>
+    </template>
+
+</odoo>

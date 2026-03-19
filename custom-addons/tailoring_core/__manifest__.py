@@ -24,9 +24,11 @@
     'data': [
         'security/ir.model.access.csv',
         'data/sequence_data.xml',
+        'report/tailoring_order_report.xml',
         'views/garment_type_views.xml',
         'views/customer_measurement_views.xml',
         'views/tailoring_order_views.xml',
+        'views/dashboard_views.xml',
         'views/menu_views.xml',
     ],
     'installable': True,

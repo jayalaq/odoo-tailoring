@@ -103,7 +103,7 @@
     <record id="action_tailoring_order" model="ir.actions.act_window">
         <field name="name">Tailoring Orders</field>
         <field name="res_model">tailoring.order</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{'search_default_in_progress': 1}</field>
     </record>
 

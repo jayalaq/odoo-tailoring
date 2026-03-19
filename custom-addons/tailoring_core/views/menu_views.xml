@@ -7,6 +7,13 @@
         web_icon="tailoring_core,static/description/icon.png"
         sequence="50"/>
 
+    <!-- Dashboard -->
+    <menuitem id="menu_tailoring_dashboard"
+        name="Dashboard"
+        parent="menu_tailoring_root"
+        action="action_tailoring_dashboard"
+        sequence="5"/>
+
     <!-- Orders -->
     <menuitem id="menu_tailoring_orders"
         name="Orders"
