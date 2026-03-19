@@ -1,30 +1,67 @@
 // Tailoring Consult ERP - Sidebar Styles
+// Overrides the default Odoo column layout to row layout with sidebar
 
+// Variables
 $tc-sidebar-bg: #0B2545;
-$tc-sidebar-text: rgba(255, 255, 255, 0.75);
+$tc-sidebar-text: rgba(255, 255, 255, 0.7);
 $tc-sidebar-text-hover: #FFFFFF;
 $tc-sidebar-active-bg: rgba(95, 168, 211, 0.2);
 $tc-sidebar-active-border: #5FA8D3;
 $tc-sidebar-width-expanded: 220px;
-$tc-sidebar-width-collapsed: 62px;
-$tc-sidebar-transition: 0.2s ease;
+$tc-sidebar-width-collapsed: 56px;
+$tc-sidebar-transition: width 0.2s ease;
 
-// Main layout
-.tc_layout {
-    height: 100vh;
-    overflow: hidden;
+// ============================================
+// Override the main o_web_client layout
+// Change from column (vertical) to row (horizontal with sidebar)
+// ============================================
+.o_web_client {
+    flex-flow: row nowrap !important;
+    overflow: hidden !important;
+
+    // The main content column (navbar + actions)
+    > .o_action_manager {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    > .o_main_navbar {
+        flex: 0 0 auto;
+    }
 }
 
-// Sidebar
+// We need a wrapper for navbar + action_manager
+// Since we can't add a wrapper div easily, we'll make the sidebar
+// a direct child and use order + flex to arrange things
+// The WebClient renders: AppSidebar, NavBar, ActionContainer, MainComponentsContainer
+// We need: [Sidebar] [Column: NavBar + ActionContainer + MainComponents]
+
+// Make the content area (everything except sidebar) flow as column
+.o_web_client {
+    > :not(.tc_sidebar):not(.o-main-components-container) {
+        flex-shrink: 0;
+    }
+
+    // The action manager should grow
+    > .o_action_manager {
+        flex: 1 1 auto !important;
+        min-height: 0;
+    }
+}
+
+// ============================================
+// Sidebar Component
+// ============================================
 .tc_sidebar {
     background: $tc-sidebar-bg;
     display: flex;
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
-    transition: width $tc-sidebar-transition;
+    transition: $tc-sidebar-transition;
     z-index: 1040;
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
+    order: -1; // Always first
 
     &--expanded {
         width: $tc-sidebar-width-expanded;
@@ -39,9 +76,10 @@ $tc-sidebar-transition: 0.2s ease;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        min-height: 58px;
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        min-height: 46px;
+        gap: 6px;
     }
 
     &__logo {
@@ -55,30 +93,41 @@ $tc-sidebar-transition: 0.2s ease;
     }
 
     &__logo-icon {
-        font-size: 22px;
+        font-size: 20px;
         color: #5FA8D3;
         flex-shrink: 0;
-        width: 28px;
+        width: 24px;
         text-align: center;
     }
 
     &__logo-text {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 700;
         letter-spacing: 0.5px;
         color: $tc-sidebar-text-hover;
     }
 
     &__toggle {
-        color: $tc-sidebar-text !important;
-        padding: 4px 8px;
-        font-size: 14px;
-        background: transparent !important;
+        color: $tc-sidebar-text;
+        padding: 4px 6px;
+        font-size: 13px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
         flex-shrink: 0;
+        border-radius: 4px;
 
         &:hover {
-            color: $tc-sidebar-text-hover !important;
+            color: $tc-sidebar-text-hover;
+            background: rgba(255, 255, 255, 0.08);
         }
+    }
+
+    &__expand {
+        display: flex;
+        justify-content: center;
+        padding: 4px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     // Navigation
@@ -86,10 +135,10 @@ $tc-sidebar-transition: 0.2s ease;
         flex: 1;
         overflow-y: auto;
         overflow-x: hidden;
-        padding: 8px 0;
+        padding: 6px 0;
 
         &::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
 
         &::-webkit-scrollbar-track {
@@ -97,7 +146,7 @@ $tc-sidebar-transition: 0.2s ease;
         }
 
         &::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 2px;
         }
     }
@@ -106,46 +155,43 @@ $tc-sidebar-transition: 0.2s ease;
     &__item {
         display: flex;
         align-items: center;
-        padding: 8px 12px;
+        padding: 7px 12px;
         color: $tc-sidebar-text !important;
         text-decoration: none !important;
         cursor: pointer;
-        transition: all 0.15s ease;
+        transition: all 0.12s ease;
         border-left: 3px solid transparent;
         gap: 10px;
         white-space: nowrap;
         overflow: hidden;
+        margin: 1px 0;
 
         &:hover {
             color: $tc-sidebar-text-hover !important;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
         }
 
         &--active {
             color: $tc-sidebar-text-hover !important;
-            background: $tc-sidebar-active-bg;
-            border-left-color: $tc-sidebar-active-border;
-        }
-
-        &--footer {
-            border-left: 3px solid transparent;
+            background: $tc-sidebar-active-bg !important;
+            border-left-color: $tc-sidebar-active-border !important;
         }
     }
 
     &__item-icon {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        font-size: 16px;
+        font-size: 15px;
     }
 
-    &__app-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
+    &__app-img {
+        width: 26px;
+        height: 26px;
+        border-radius: 5px;
         object-fit: cover;
     }
 
@@ -155,27 +201,69 @@ $tc-sidebar-transition: 0.2s ease;
         overflow: hidden;
         text-overflow: ellipsis;
     }
+}
 
-    // Footer
-    &__footer {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 8px 0;
+// ============================================
+// Fix: Content area must stack vertically
+// Since WebClient is now row, we need to make
+// the non-sidebar children still flow as column
+// ============================================
+// The key insight: WebClient now has direct children:
+//   1. tc_sidebar (sidebar)
+//   2. header.o_navbar (navbar)
+//   3. .o_action_manager (main content)
+//   4. .o-main-components-container (overlays, etc.)
+//
+// We need items 2+3+4 to stack vertically.
+// Solution: Use CSS Grid on .o_web_client instead of flex
+
+.o_web_client {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+
+    > .tc_sidebar {
+        grid-column: 1;
+        grid-row: 1 / -1; // Span all rows
+    }
+
+    > .o_navbar,
+    > header.o_navbar {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    > .o_action_manager {
+        grid-column: 2;
+        grid-row: 2;
+        overflow: hidden;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    > .o-main-components-container {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        pointer-events: none;
+        z-index: 1050;
+
+        > * {
+            pointer-events: auto;
+        }
     }
 }
 
-// Main content area
-.tc_main {
-    background: #F0F2F5;
-    min-width: 0;
-}
-
-// Responsive - hide sidebar on small screens
+// ============================================
+// Responsive: hide sidebar on small screens
+// ============================================
 @media (max-width: 767.98px) {
     .tc_sidebar {
         display: none !important;
     }
 
-    .tc_layout {
-        flex-direction: column;
+    .o_web_client {
+        display: flex !important;
+        flex-flow: column nowrap !important;
     }
 }

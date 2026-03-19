@@ -6,10 +6,10 @@
     'description': """
         Tailoring Consult ERP Branding
         ==============================
-        - Enterprise-style sidebar navigation
+        - Enterprise-style sidebar navigation with app icons
         - Modern color scheme and typography
+        - White navbar with dark sidebar
         - Custom branding throughout the UI
-        - Removes third-party references
     """,
     'author': 'Tailoring Consult',
     'website': '',
@@ -21,13 +21,13 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # SCSS theme
+            # SCSS (load sidebar first since it changes layout)
             'tailoring_branding/static/src/scss/sidebar.scss',
             'tailoring_branding/static/src/scss/theme.scss',
             # JS components
             'tailoring_branding/static/src/js/sidebar.js',
             'tailoring_branding/static/src/js/webclient.js',
-            # XML templates
+            # OWL XML templates
             'tailoring_branding/static/src/xml/sidebar.xml',
             'tailoring_branding/static/src/xml/webclient.xml',
             'tailoring_branding/static/src/xml/systray.xml',

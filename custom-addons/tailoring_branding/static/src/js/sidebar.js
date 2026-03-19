@@ -1,8 +1,7 @@
 /** @odoo-module **/
 
-import { Component, useState, useRef, useEffect } from "@odoo/owl";
+import { Component, useState } from "@odoo/owl";
 import { useService } from "@web/core/utils/hooks";
-import { registry } from "@web/core/registry";
 
 export class AppSidebar extends Component {
     static template = "tailoring_branding.AppSidebar";
@@ -13,7 +12,6 @@ export class AppSidebar extends Component {
         this.actionService = useService("action");
         this.state = useState({
             collapsed: false,
-            hovering: false,
         });
 
         this.env.bus.addEventListener("MENUS:APP-CHANGED", () => this.render());
@@ -28,21 +26,12 @@ export class AppSidebar extends Component {
     }
 
     get isExpanded() {
-        return !this.state.collapsed || this.state.hovering;
+        return !this.state.collapsed;
     }
 
     toggleCollapse() {
         this.state.collapsed = !this.state.collapsed;
-    }
-
-    onMouseEnter() {
-        if (this.state.collapsed) {
-            this.state.hovering = true;
-        }
-    }
-
-    onMouseLeave() {
-        this.state.hovering = false;
+        document.body.classList.toggle("tc_sidebar_collapsed", this.state.collapsed);
     }
 
     selectApp(app) {

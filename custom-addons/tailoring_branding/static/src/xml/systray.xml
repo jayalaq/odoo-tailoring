@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-
-    <!-- Hide Odoo branding in the systray/support links -->
-    <t t-name="tailoring_branding.SupportLink" t-inherit="web.DebugMenu" t-inherit-mode="extension">
-        <xpath expr="//a[contains(@href, 'odoo.com')]" position="attributes">
-            <attribute name="class">d-none</attribute>
-        </xpath>
-    </t>
-
+    <!-- Placeholder: Odoo branding hidden via CSS in theme.scss -->
 </templates>

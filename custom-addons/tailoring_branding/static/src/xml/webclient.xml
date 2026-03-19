@@ -1,33 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <!-- Override WebClient to add sidebar layout -->
-    <t t-name="web.WebClient" t-inherit="web.WebClient" t-inherit-mode="extension">
-        <xpath expr="." position="replace">
-            <t>
-                <div class="tc_layout d-flex vh-100">
-                    <!-- Sidebar -->
-                    <t t-if="!state.fullscreen">
-                        <AppSidebar/>
-                    </t>
-
-                    <!-- Main content area -->
-                    <div class="tc_main flex-grow-1 d-flex flex-column overflow-hidden">
-                        <t t-if="!state.fullscreen">
-                            <NavBar/>
-                        </t>
-                        <ActionContainer/>
-                        <MainComponentsContainer/>
-                    </div>
-                </div>
-            </t>
+    <!-- Override WebClient: wrap in flex row layout with sidebar -->
+    <t t-name="tailoring_branding.WebClient" t-inherit="web.WebClient" t-inherit-mode="extension">
+        <xpath expr="//t[@t-if='!state.fullscreen']" position="before">
+            <AppSidebar t-if="!state.fullscreen"/>
         </xpath>
     </t>
 
-    <!-- Hide the apps menu dropdown from the navbar (now in sidebar) -->
+    <!-- Hide the apps menu dropdown from navbar since apps are now in sidebar -->
     <t t-name="tailoring_branding.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension">
         <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="replace">
-            <div class="tc_navbar_spacer"/>
+            <!-- Apps menu moved to sidebar -->
         </xpath>
     </t>
 
